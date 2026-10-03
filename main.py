@@ -1,9 +1,9 @@
+# section 2 completed.
 import os
 
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import PromptTemplate
-from langchain_nvidia_ai_endpoints import ChatNVIDIA
 
 load_dotenv()
 
@@ -11,7 +11,7 @@ llm = ChatOpenAI(
     model=os.environ["FCC_MODEL"],
     base_url=os.environ["FCC_BASE_URL"],
     api_key=os.environ["FCC_API_KEY"],
-    temperature=0, # low values makes it factual deterministic 0.3 ---- high values 0.8 - 1 are for fiction poetry and creativity
+    temperature=0,  # low values makes it factual deterministic 0.3 ---- high values 0.8 - 1 are for fiction poetry and creativity
     use_responses_api=True,
     output_version="responses/v1",
 )
@@ -22,6 +22,7 @@ llm = ChatOpenAI(
 #     temperature=0,
 #     max_retries=3
 # )
+
 
 def main():
     response = ""
@@ -45,17 +46,13 @@ Six major expansion packs have been released for the game; Heart of Thorns (2015
     chain = summary_prompt_template | llm
 
     # chunk way of doing it
-    for chunk in chain.stream({
-        "information": information
-    }):
+    for chunk in chain.stream({"information": information}):
         response += chunk.text
 
     # normal invoke
     # response = chain.invoke({"information": information})
 
     print(f"Reponse: {response}")
-
-
 
 
 if __name__ == "__main__":
