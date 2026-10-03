@@ -8,7 +8,10 @@ dependencies = [
     "black>=26.5.1",
     "isort>=9.0.1",
     "langchain>=1.4.0",
+    "langchain-anthropic>=1.7.4",
     "langchain-openai>=1.6.2",
+    "langchain-tavily>=0.2.18",
     "openai>=3.14.0",
     "python-dotenv>=1.2.3",
+    "tavily>=1.1.0",
 ]
